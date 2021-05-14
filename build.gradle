@@ -102,6 +102,7 @@ ext {
     photoview = 'com.github.chrisbanes:PhotoView:2.3.0'
     robolectric = 'org.robolectric:robolectric:4.4'
     junit = 'junit:junit:4.12'
+    lottie = 'com.airbnb.android:lottie:3.7.0'
 
 }
 

@@ -2,3 +2,4 @@ rootProject.name = "Vaccine Slots Notifier"
 include ':app'
 include ':domain'
 include ':data'
+include ':lib-res'

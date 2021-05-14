@@ -48,6 +48,8 @@ dependencies {
     implementation androidx.navigation.fragment
     implementation androidx.navigation.ui
     implementation androidx.work.runtime
+    implementation lottie
+
 
     implementation square.retrofit2.retrofit
     implementation square.retrofit2.moshiConverter
@@ -62,4 +64,5 @@ dependencies {
 
     implementation project(':data')
     implementation project(':domain')
+    implementation project(':lib-res')
 }

@@ -1,17 +1,20 @@
 package me.alphaone.vaccinenotifier
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import me.alphaone.vaccinenotifier.databinding.FragmentFirstBinding
 import vaccinenotifier.data.scheduleWork
 import vaccinenotifier.data.stopWork
+import vaccinenotifier.domain.Loading
 import vaccinenotifier.domain.Success
 
 
@@ -44,10 +47,10 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().actionBar?.show()
         viewModel.states.observe(viewLifecycleOwner) {
             when (it) {
                 is Success -> {
-
                     binding.states.setAdapter(ArrayAdapter(
                         requireContext(),
                         R.layout.list_item,
@@ -59,6 +62,10 @@ class FirstFragment : Fragment() {
                         selectedState = it.data[position].id
                         viewModel.getDistricts(selectedState)
                     }
+                    binding.progress.visibility = View.GONE
+                }
+                is Loading -> {
+                    binding.progress.visibility = View.VISIBLE
                 }
                 else -> {
 
@@ -79,6 +86,12 @@ class FirstFragment : Fragment() {
                         selectedDistrict = it.data[position].id
                         viewModel.saveDistrictId(selectedDistrict)
                     }
+
+                    binding.progress.visibility = View.GONE
+                }
+
+                is Loading -> {
+                    binding.progress.visibility = View.VISIBLE
                 }
                 else -> {
 
@@ -86,8 +99,13 @@ class FirstFragment : Fragment() {
             }
         }
         binding.button.setOnClickListener {
+            if(selectedDistrict==-1)
+            {
+                Toast.makeText(requireContext(),"Please select district.",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             scheduleWork(requireActivity().applicationContext)
-            Snackbar.make(binding.root, "You will be notified once the vaccine are available", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(binding.root, "You will be notified once the vaccine slots are available", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Stop"){
                     stopWork(requireContext())
                 }
