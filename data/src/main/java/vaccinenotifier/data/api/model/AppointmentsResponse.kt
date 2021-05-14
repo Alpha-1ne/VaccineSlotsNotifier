@@ -23,7 +23,7 @@ data class Center(
 @JsonClass(generateAdapter = true)
 data class Session(
     @Json(name = APIConstants.Appointment.Center.Session.ID)
-    override val id: Int,
+    override val id: String,
     @Json(name = APIConstants.Appointment.Center.Session.AGE_LIMIT)
     override val ageLimit: Int,
     @Json(name = APIConstants.Appointment.Center.Session.VACCINE_TYPE)

@@ -1,9 +1,11 @@
 package vaccinenotifier.data
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import vaccinenotifier.data.api.APIService
 import vaccinenotifier.domain.*
 import javax.inject.Inject
+
 
 class VaccineRepositoryImpl @Inject constructor(private val service: APIService) :
     VaccineRepository {
@@ -45,8 +47,8 @@ class VaccineRepositoryImpl @Inject constructor(private val service: APIService)
         onSuccess = { response ->
             response.centers ?: emptyList()
         },
-        onMappingFailure = { },
-        onApiFailure = { }
+        onMappingFailure = { Log.d("Error",it.toString())},
+        onApiFailure = { Log.d("Error",it) }
     )
 
 }

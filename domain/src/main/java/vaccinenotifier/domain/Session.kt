@@ -3,7 +3,7 @@ package vaccinenotifier.domain
 
 interface Session {
 
-    val id: Int
+    val id: String
 
     val ageLimit: Int
 
