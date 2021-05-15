@@ -1,0 +1,213 @@
+{
+  "project_info": {
+    "project_number": "31975074564",
+    "firebase_url": "https://admob-app-id-6749042433.firebaseio.com",
+    "project_id": "admob-app-id-6749042433",
+    "storage_bucket": "admob-app-id-6749042433.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31975074564:android:247743a344dd67f9",
+        "android_client_info": {
+          "package_name": "com.xdeveloper.adflydecrypter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpg-WePNkuLSqzQ7pY_86SA7FxRwr1F1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-4206269502494867~7514094037"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31975074564:android:72b827faf7844fdc",
+        "android_client_info": {
+          "package_name": "com.xdeveloper.automatedtrafficbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31975074564-9l1r71emd81nk5j3m3ds4ll3or9ia3kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xdeveloper.automatedtrafficbot",
+            "certificate_hash": "5b7e26165e3e31edf72f0b0d4f82b0d3188e8f79"
+          }
+        },
+        {
+          "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpg-WePNkuLSqzQ7pY_86SA7FxRwr1F1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-4206269502494867~6749042433"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31975074564:android:8595ac1257424f8d",
+        "android_client_info": {
+          "package_name": "com.xdeveloper.kuk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31975074564-a245vj0fs4musqffukmctb71hol6re75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xdeveloper.kuk",
+            "certificate_hash": "5b7e26165e3e31edf72f0b0d4f82b0d3188e8f79"
+          }
+        },
+        {
+          "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpg-WePNkuLSqzQ7pY_86SA7FxRwr1F1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-4206269502494867~7167939631"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31975074564:android:d44c30767a256cde",
+        "android_client_info": {
+          "package_name": "com.xdeveloper.moviedb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31975074564-p1dec7kghcjh4uid11e0q80hj01i6ik3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xdeveloper.moviedb",
+            "certificate_hash": "8f15fb56af901744a6c77801ca770db8283477bb"
+          }
+        },
+        {
+          "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpg-WePNkuLSqzQ7pY_86SA7FxRwr1F1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31975074564:android:a9915c5c4b7b6f84",
+        "android_client_info": {
+          "package_name": "com.xdeveloper.zipinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpg-WePNkuLSqzQ7pY_86SA7FxRwr1F1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-4206269502494867~5963924432"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31975074564:android:489e077e52061d5b2fbe51",
+        "android_client_info": {
+          "package_name": "me.alphaone.vaccinenotifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpg-WePNkuLSqzQ7pY_86SA7FxRwr1F1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31975074564-g71jh4s4ft1bhp4e7a3uivov98rm7vlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

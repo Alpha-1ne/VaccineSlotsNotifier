@@ -3,25 +3,49 @@ package vaccinenotifier.data
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import vaccinenotifier.domain.AppSettings
+import vaccinenotifier.data.api.model.District
+import vaccinenotifier.domain.ScheduledData
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = AppSettingsImpl.DATA_STORE_NAME)
 
 class AppSettingsImpl(private val dataStore: DataStore<Preferences>) : AppSettings {
 
-    private val districtId: Preferences.Key<String> = stringPreferencesKey("districtId")
+    private val districtIdKey: Preferences.Key<String> = stringPreferencesKey("districtId")
+    private val districtNameKey: Preferences.Key<String> = stringPreferencesKey("districtName")
+    private val isScheduledKey: Preferences.Key<Boolean> = booleanPreferencesKey("isScheduled")
 
-    override suspend fun setDistrictId(id: Int) {
-        dataStore.edit { it[districtId] = id.toString() }
+    override suspend fun setDistrictId(id: Int, name:String?) {
+        dataStore.edit {
+            it[districtIdKey] = id.toString()
+            it[districtNameKey] = name.toString()
+        }
     }
 
-    override suspend fun getDistrictId(): String {
-        return dataStore.data.map { it[districtId]?:"-1" }.first()
+    override suspend fun setScheduled(isScheduled: Boolean) {
+        dataStore.edit {
+            it[isScheduledKey] = isScheduled
+        }
+    }
+
+    override suspend fun getScheduledData(): ScheduledData {
+        val id = dataStore.data.map { it[districtIdKey]?:"-1" }.first()
+        val name = dataStore.data.map { it[districtNameKey]?:"" }.first()
+        val isScheduled = dataStore.data.map { it[isScheduledKey]?:false }.first()
+        return ScheduledData(isScheduled, District(Integer.parseInt(id), name))
+    }
+
+    override suspend fun getScheduledDataFlow(): Flow<ScheduledData> {
+        return dataStore.data.map { ScheduledData(it[isScheduledKey]?:false,
+            District(Integer.parseInt(it[districtIdKey]?:"-1"),it[districtNameKey]?:""
+             )) }
     }
 
     companion object {

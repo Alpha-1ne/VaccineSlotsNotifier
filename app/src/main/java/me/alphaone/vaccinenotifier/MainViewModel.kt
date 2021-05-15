@@ -28,9 +28,22 @@ class MainViewModel @Inject constructor(
     val district: LiveData<Resource<List<District>>>
      get() = _district
 
+    private val _isScheduled: MutableLiveData<ScheduledData> = MutableLiveData()
+    val isScheduled: LiveData<ScheduledData>
+     get() = _isScheduled
+
 
     init {
      loadStates()
+        loadScheduledState()
+    }
+
+    private fun loadScheduledState() {
+        viewModelScope.launch {
+            appSettings.getScheduledDataFlow().collect {
+                _isScheduled.postValue(it)
+            }
+        }
     }
 
     private fun loadStates(){
@@ -102,9 +115,15 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    fun saveDistrictId(district: Int){
+    fun saveDistrictId(district: District){
         viewModelScope.launch {
-            appSettings.setDistrictId(district)
+            appSettings.setDistrictId(district.id,district.name)
+        }
+    }
+
+    fun saveScheduledState(isScheduled: Boolean){
+        viewModelScope.launch {
+            appSettings.setScheduled(isScheduled)
         }
     }
 

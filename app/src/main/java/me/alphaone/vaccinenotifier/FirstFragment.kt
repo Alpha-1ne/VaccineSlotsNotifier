@@ -1,6 +1,5 @@
 package me.alphaone.vaccinenotifier
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -84,7 +83,7 @@ class FirstFragment : Fragment() {
                     ))
                     binding.districts.setOnItemClickListener { _, _, position, _ ->
                         selectedDistrict = it.data[position].id
-                        viewModel.saveDistrictId(selectedDistrict)
+                        viewModel.saveDistrictId(it.data[position])
                     }
 
                     binding.progress.visibility = View.GONE
@@ -98,19 +97,48 @@ class FirstFragment : Fragment() {
                 }
             }
         }
+        viewModel.isScheduled.observe(viewLifecycleOwner){
+            it?.let {
+                if(it.isScheduled)
+                {
+                    binding.button.text = getString(R.string.button_update)
+                    binding.cardViewScheduler.visibility = View.VISIBLE
+                    binding.scheduleText.text = getString(R.string.schedule_text,it.district.name)
+                    binding.stop.setOnClickListener {
+                        stopWork()
+                    }
+                }
+                else
+                    binding.cardViewScheduler.visibility = View.GONE
+            }
+        }
         binding.button.setOnClickListener {
+            binding.progress.visibility = View.VISIBLE
             if(selectedDistrict==-1)
             {
                 Toast.makeText(requireContext(),"Please select district.",Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             scheduleWork(requireActivity().applicationContext)
-            Snackbar.make(binding.root, "You will be notified once the vaccine slots are available", Snackbar.LENGTH_INDEFINITE)
+            viewModel.saveScheduledState(true)
+            Snackbar.make(binding.root, "You will be notified once the vaccine slots are available", Snackbar.LENGTH_SHORT)
                 .setAction("Stop"){
-                    stopWork(requireContext())
+                    stopWork()
                 }
                 .show()
+            binding.progress.visibility = View.GONE
         }
+        binding.dismiss.setOnClickListener {
+            binding.instructions.visibility = View.GONE
+        }
+    }
+
+    private fun stopWork() {
+        binding.progress.visibility = View.VISIBLE
+        stopWork(requireContext())
+        viewModel.saveScheduledState(false)
+        binding.button.text = getString(R.string.button_notify)
+        binding.progress.visibility = View.GONE
     }
 
     override fun onDestroyView() {

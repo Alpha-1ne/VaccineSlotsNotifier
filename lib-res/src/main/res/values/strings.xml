@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="schedule_text">You will be notified for any 18+ vaccine slot availability in your district %s</string>
+    <string name="button_update">Update</string>
+    <string name="button_notify">Notify once available</string>
+</resources>
