@@ -103,6 +103,7 @@ ext {
     robolectric = 'org.robolectric:robolectric:4.4'
     junit = 'junit:junit:4.12'
     lottie = 'com.airbnb.android:lottie:3.7.0'
+    autostart = 'com.github.judemanutd:autostarter:1.0.9'
 
 }
 

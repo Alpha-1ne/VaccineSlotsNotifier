@@ -29,6 +29,8 @@ class FirstFragment : Fragment() {
 
     private var selectedState: Int = -1
     private var selectedDistrict: Int = -1
+    private var dose1: Boolean = false
+    private var dose2: Boolean = false
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -47,6 +49,12 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().actionBar?.show()
+        binding.switchDose1.setOnCheckedChangeListener { _, isChecked ->
+            dose1 = isChecked
+        }
+        binding.switchDose2.setOnCheckedChangeListener { _, isChecked ->
+            dose2 = isChecked
+        }
         viewModel.states.observe(viewLifecycleOwner) {
             when (it) {
                 is Success -> {
@@ -101,9 +109,11 @@ class FirstFragment : Fragment() {
             it?.let {
                 if(it.isScheduled)
                 {
-                    binding.button.text = getString(R.string.button_update)
+                    binding.button.text = getString(R.string.action_update)
                     binding.cardViewScheduler.visibility = View.VISIBLE
                     binding.scheduleText.text = getString(R.string.schedule_text,it.district.name)
+                    binding.switchDose1.isChecked = it.dose1
+                    binding.switchDose2.isChecked = it.dose2
                     binding.stop.setOnClickListener {
                         stopWork()
                     }
@@ -120,8 +130,8 @@ class FirstFragment : Fragment() {
                 return@setOnClickListener
             }
             scheduleWork(requireActivity().applicationContext)
-            viewModel.saveScheduledState(true)
-            Snackbar.make(binding.root, "You will be notified once the vaccine slots are available", Snackbar.LENGTH_SHORT)
+            viewModel.saveScheduledState(true, dose1,dose2)
+            Snackbar.make(binding.root, "You will be notified whenever the vaccine slots are available", Snackbar.LENGTH_SHORT)
                 .setAction("Stop"){
                     stopWork()
                 }
@@ -131,13 +141,15 @@ class FirstFragment : Fragment() {
         binding.dismiss.setOnClickListener {
             binding.instructions.visibility = View.GONE
         }
+        //AutoStartPermissionHelper.getInstance().getAutoStartPermission(requi
+    // reContext())
     }
 
     private fun stopWork() {
         binding.progress.visibility = View.VISIBLE
         stopWork(requireContext())
-        viewModel.saveScheduledState(false)
-        binding.button.text = getString(R.string.button_notify)
+        viewModel.saveScheduledState(false,dose1,dose2)
+        binding.button.text = getString(R.string.action_notify)
         binding.progress.visibility = View.GONE
     }
 

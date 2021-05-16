@@ -48,4 +48,8 @@
         <item name="boxStrokeWidth">0dp</item>
     </style>
 
+    <style name="Widget.App.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
 </resources>

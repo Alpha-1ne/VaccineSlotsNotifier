@@ -121,9 +121,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun saveScheduledState(isScheduled: Boolean){
+    fun saveScheduledState(isScheduled: Boolean, dose1:Boolean, dose2:Boolean){
         viewModelScope.launch {
-            appSettings.setScheduled(isScheduled)
+            appSettings.setScheduled(isScheduled, dose1, dose2)
         }
     }
 

@@ -21,6 +21,8 @@ class AppSettingsImpl(private val dataStore: DataStore<Preferences>) : AppSettin
     private val districtIdKey: Preferences.Key<String> = stringPreferencesKey("districtId")
     private val districtNameKey: Preferences.Key<String> = stringPreferencesKey("districtName")
     private val isScheduledKey: Preferences.Key<Boolean> = booleanPreferencesKey("isScheduled")
+    private val dose1Key: Preferences.Key<Boolean> = booleanPreferencesKey("doseOne")
+    private val dose2Key: Preferences.Key<Boolean> = booleanPreferencesKey("doseTwo")
 
     override suspend fun setDistrictId(id: Int, name:String?) {
         dataStore.edit {
@@ -29,7 +31,7 @@ class AppSettingsImpl(private val dataStore: DataStore<Preferences>) : AppSettin
         }
     }
 
-    override suspend fun setScheduled(isScheduled: Boolean) {
+    override suspend fun setScheduled(isScheduled: Boolean, dose1:Boolean, dose2:Boolean) {
         dataStore.edit {
             it[isScheduledKey] = isScheduled
         }
@@ -39,13 +41,15 @@ class AppSettingsImpl(private val dataStore: DataStore<Preferences>) : AppSettin
         val id = dataStore.data.map { it[districtIdKey]?:"-1" }.first()
         val name = dataStore.data.map { it[districtNameKey]?:"" }.first()
         val isScheduled = dataStore.data.map { it[isScheduledKey]?:false }.first()
-        return ScheduledData(isScheduled, District(Integer.parseInt(id), name))
+        val dose1 = dataStore.data.map { it[dose1Key]?:false }.first()
+        val dose2 = dataStore.data.map { it[dose2Key]?:false }.first()
+        return ScheduledData(isScheduled, District(Integer.parseInt(id), name),dose1,dose2)
     }
 
     override suspend fun getScheduledDataFlow(): Flow<ScheduledData> {
         return dataStore.data.map { ScheduledData(it[isScheduledKey]?:false,
             District(Integer.parseInt(it[districtIdKey]?:"-1"),it[districtNameKey]?:""
-             )) }
+             ), it[dose1Key]?:false, it[dose2Key]?:false) }
     }
 
     companion object {

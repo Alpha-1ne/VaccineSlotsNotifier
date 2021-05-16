@@ -11,4 +11,8 @@ interface Session {
 
     val available: Int
 
+    val availableDose1: Int
+
+    val availableDose2: Int
+
 }

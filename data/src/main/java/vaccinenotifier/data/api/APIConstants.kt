@@ -25,6 +25,8 @@ internal object APIConstants {
             object Session{
                 const val ID = "session_id"
                 const val AVAILABILITY = "available_capacity"
+                const val AVAILABILITY_DOSE1 = "available_capacity_dose1"
+                const val AVAILABILITY_DOSE2 = "available_capacity_dose2"
                 const val AGE_LIMIT = "min_age_limit"
                 const val VACCINE_TYPE = "vaccine"
             }

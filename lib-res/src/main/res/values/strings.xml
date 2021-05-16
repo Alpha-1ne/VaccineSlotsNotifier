@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="schedule_text">You will be notified for any 18+ vaccine slot availability in your district %s</string>
-    <string name="button_update">Update</string>
-    <string name="button_notify">Notify once available</string>
+    <string name="schedule_text">You will be notified for any 18+ vaccine slot (Dose 1 &amp; 2) availability in your district %s</string>
+    <string name="action_update">Update</string>
+    <string name="action_notify">Notify once available</string>
+    <string name="dose_one">1st Dose</string>
+    <string name="dose_two">2nd Dose</string>
+    <string name="action_stop">Stop</string>
+    <string name="district">District</string>
+    <string name="state">State</string>
+    <string name="title_instruction">To make sure you don\'t miss any notification, please enable below option:</string>
+    <string name="battery_optimization">Disable Battery Optimization</string>
+    <string name="background_data">Enable Background Data</string>
+    <string name="autostart">Enable Autostart</string>
+    <string name="action_dismiss">Dismiss</string>
 </resources>

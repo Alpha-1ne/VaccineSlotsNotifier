@@ -30,4 +30,8 @@ data class Session(
     override val vaccineType: String,
     @Json(name = APIConstants.Appointment.Center.Session.AVAILABILITY)
     override val available: Int,
+    @Json(name = APIConstants.Appointment.Center.Session.AVAILABILITY_DOSE1)
+    override val availableDose1: Int,
+    @Json(name = APIConstants.Appointment.Center.Session.AVAILABILITY_DOSE2)
+    override val availableDose2: Int,
 ): vaccinenotifier.domain.Session

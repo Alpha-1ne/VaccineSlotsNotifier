@@ -8,5 +8,5 @@ interface AppSettings {
     suspend fun getScheduledData(): ScheduledData
     suspend fun getScheduledDataFlow(): Flow<ScheduledData>
     suspend fun setDistrictId(id: Int,name:String?)
-    suspend fun setScheduled(isScheduled:Boolean)
+    suspend fun setScheduled(isScheduled: Boolean, dose1: Boolean, dose2: Boolean)
 }
