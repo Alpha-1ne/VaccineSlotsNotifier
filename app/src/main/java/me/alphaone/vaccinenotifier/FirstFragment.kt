@@ -148,7 +148,7 @@ class FirstFragment : Fragment() {
     private fun stopWork() {
         binding.progress.visibility = View.VISIBLE
         stopWork(requireContext())
-        viewModel.saveScheduledState(false,dose1,dose2)
+        viewModel.saveScheduledState(isScheduled = false,dose1 = false,false)
         binding.button.text = getString(R.string.action_notify)
         binding.progress.visibility = View.GONE
     }

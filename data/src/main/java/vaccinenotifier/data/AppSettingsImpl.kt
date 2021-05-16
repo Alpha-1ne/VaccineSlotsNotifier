@@ -34,6 +34,8 @@ class AppSettingsImpl(private val dataStore: DataStore<Preferences>) : AppSettin
     override suspend fun setScheduled(isScheduled: Boolean, dose1:Boolean, dose2:Boolean) {
         dataStore.edit {
             it[isScheduledKey] = isScheduled
+            it[dose1Key] = dose1
+            it[dose2Key] = dose2
         }
     }
 
