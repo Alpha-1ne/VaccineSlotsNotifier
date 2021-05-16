@@ -106,10 +106,11 @@ class NotificationWorker @AssistedInject constructor(
             .setSmallIcon(R.drawable.ic_syringe)
             .setContentText(messageText)
             .setAutoCancel(true)
-            .setPriority(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) NotificationManager.IMPORTANCE_HIGH else Notification.PRIORITY_HIGH)
+            .setPriority(Notification.PRIORITY_HIGH)
             .setSound(defaultSoundUri)
             .setStyle(NotificationCompat.BigTextStyle().bigText(messageText))
-            .setContentIntent(contentIntent)
+            .addAction(R.drawable.ic_baseline_notifications_24, context.getString(R.string.register),
+                contentIntent)
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

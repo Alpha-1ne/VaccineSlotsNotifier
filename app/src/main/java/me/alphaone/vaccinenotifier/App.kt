@@ -25,14 +25,14 @@ class App: Application(), Configuration.Provider {
                 NotificationChannel(
                     "VC_CHANNEL_ID",
                     "Vaccine Notifier",
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_HIGH
                 )
             )
             notificationManager.createNotificationChannel(
                 NotificationChannel(
                     "VC_CHANNEL_ID_DOSE_TWO",
                     "Vaccine Notifier Dose 2",
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_HIGH
                 )
             )
             notificationManager.createNotificationChannel(

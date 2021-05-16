@@ -1,20 +1,30 @@
 package me.alphaone.vaccinenotifier
 
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import me.alphaone.autostart.AutoStartPermissionHelper
 import me.alphaone.vaccinenotifier.databinding.FragmentFirstBinding
 import vaccinenotifier.data.scheduleWork
 import vaccinenotifier.data.stopWork
 import vaccinenotifier.domain.Loading
 import vaccinenotifier.domain.Success
+import java.lang.Exception
 
 
 @AndroidEntryPoint
@@ -105,53 +115,114 @@ class FirstFragment : Fragment() {
                 }
             }
         }
-        viewModel.isScheduled.observe(viewLifecycleOwner){
+        viewModel.isScheduled.observe(viewLifecycleOwner) {
             it?.let {
-                if(it.isScheduled)
-                {
+                if (it.isScheduled) {
                     binding.button.text = getString(R.string.action_update)
                     binding.cardViewScheduler.visibility = View.VISIBLE
-                    binding.scheduleText.text = getString(R.string.schedule_text,it.district.name)
-                    binding.switchDose1.isChecked = it.dose1
-                    binding.switchDose2.isChecked = it.dose2
+                    binding.scheduleText.text = getString(R.string.schedule_text, it.district.name)
+                    binding.switchDose1.isChecked = false
+                    binding.switchDose2.isChecked = false
                     binding.stop.setOnClickListener {
                         stopWork()
                     }
-                }
-                else
+                } else
                     binding.cardViewScheduler.visibility = View.GONE
             }
         }
         binding.button.setOnClickListener {
             binding.progress.visibility = View.VISIBLE
-            if(selectedDistrict==-1)
-            {
-                Toast.makeText(requireContext(),"Please select district.",Toast.LENGTH_LONG).show()
+            if (selectedDistrict == -1) {
+                showMessage(getString(R.string.warning_district))
+                return@setOnClickListener
+            }
+            if (!dose1 && !dose2) {
+                showMessage(getString(R.string.warning_select_dose))
                 return@setOnClickListener
             }
             scheduleWork(requireActivity().applicationContext)
-            viewModel.saveScheduledState(true, dose1,dose2)
-            Snackbar.make(binding.root, "You will be notified whenever the vaccine slots are available", Snackbar.LENGTH_SHORT)
-                .setAction("Stop"){
-                    stopWork()
-                }
-                .show()
+            viewModel.saveScheduledState(true, dose1, dose2)
+            showMessage(getString(R.string.action_scheduled))
             binding.progress.visibility = View.GONE
         }
-        binding.dismiss.setOnClickListener {
-            binding.instructions.visibility = View.GONE
+
+        binding.setupBattery.setOnClickListener {
+            disableBatterySaveMode()
         }
-        //AutoStartPermissionHelper.getInstance().getAutoStartPermission(requi
-    // reContext())
+        binding.setupAutoStart.setOnClickListener {
+            AutoStartPermissionHelper.getInstance().getAutoStartPermission(requireContext())
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            binding.setupBackground.visibility = View.VISIBLE
+            binding.switchBackgroundData.visibility = View.VISIBLE
+            binding.setupBackground.setOnClickListener {
+                try {
+                    val intent =
+                        Intent(Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS)
+                    startActivity(intent)
+                } catch (
+                    exception: Exception
+                ) {
+                    showMessage(getString(R.string.error))
+                }
+            }
+        }
     }
 
     private fun stopWork() {
         binding.progress.visibility = View.VISIBLE
         stopWork(requireContext())
-        viewModel.saveScheduledState(isScheduled = false,dose1 = false,false)
+        viewModel.saveScheduledState(isScheduled = false, dose1 = false, false)
         binding.button.text = getString(R.string.action_notify)
         binding.progress.visibility = View.GONE
     }
+
+    private fun showMessage(message: String, showAction: Boolean = false) {
+        val sb = Snackbar.make(
+            binding.root,
+            message,
+            Snackbar.LENGTH_SHORT
+        )
+        if (showAction)
+            sb.setAction(getString(R.string.action_stop)) {
+                stopWork()
+            }
+        sb.show()
+    }
+
+
+    private fun disableBatterySaveMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activity = requireActivity()
+            val pm = activity.getSystemService(AppCompatActivity.POWER_SERVICE) as PowerManager?
+            if (!pm!!.isIgnoringBatteryOptimizations(activity.packageName)) {
+                if (Build.BRAND == "xiaomi") {
+                    try {
+                        val intent = Intent()
+                        intent.component = ComponentName(
+                            "com.miui.powerkeeper",
+                            "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"
+                        )
+                        intent.putExtra("package_name", activity.packageName)
+                        intent.putExtra("package_label", "Vaccine Notifier")
+                        startActivity(intent)
+                    } catch (anfe: ActivityNotFoundException) {
+                        showMessage(getString(R.string.error))
+                    }
+                } else {
+                    try {
+                        val intent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
+                        startActivity(intent)
+                    } catch (
+                        exception: Exception
+                    ) {
+                        showMessage(getString(R.string.error))
+                    }
+                }
+            }
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

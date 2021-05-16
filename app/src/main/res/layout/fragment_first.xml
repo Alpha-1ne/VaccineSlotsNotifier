@@ -176,60 +176,83 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
+
+                <TextView
                     android:id="@+id/switchBattery"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:checked="true"
+                    android:layout_marginTop="16dp"
                     android:text="@string/battery_optimization"
                     android:textAlignment="textStart"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchBackgroundData"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:checked="true"
-                    android:text="@string/background_data"
-                    android:textAlignment="textStart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switchBattery" />
-
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchAutoStart"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginTop="8dp"
-                    android:checked="true"
-                    android:text="@string/autostart"
-                    android:textAlignment="textStart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switchBackgroundData" />
-
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/dismiss"
+                    android:id="@+id/setupBattery"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/action_dismiss"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/action_setup"
+                    app:layout_constraintBottom_toBottomOf="@id/switchBattery"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switchAutoStart" />
+                    app:layout_constraintTop_toTopOf="@+id/switchBattery" />
+
+
+                <TextView
+                    android:id="@+id/switchBackgroundData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/background_data"
+                    android:visibility="gone"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/setupBattery" />
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/setupBackground"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
+                    android:visibility="gone"
+                    android:text="@string/action_setup"
+                    app:layout_constraintBottom_toBottomOf="@id/switchBackgroundData"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/switchBackgroundData" />
+
+
+                <TextView
+                    android:id="@+id/switchAutoStart"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/autostart"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/setupBackground" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/setupAutoStart"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/action_setup"
+                    app:layout_constraintBottom_toBottomOf="@id/switchAutoStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/switchAutoStart" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

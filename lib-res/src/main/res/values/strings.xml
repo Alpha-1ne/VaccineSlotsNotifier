@@ -8,9 +8,14 @@
     <string name="action_stop">Stop</string>
     <string name="district">District</string>
     <string name="state">State</string>
-    <string name="title_instruction">To make sure you don\'t miss any notification, please enable below option:</string>
+    <string name="title_instruction">To make sure you don\'t miss any notification, please check the below options:</string>
     <string name="battery_optimization">Disable Battery Optimization</string>
     <string name="background_data">Enable Background Data</string>
     <string name="autostart">Enable Autostart</string>
-    <string name="action_dismiss">Dismiss</string>
+    <string name="action_setup">Check</string>
+    <string name="action_scheduled">You will be notified whenever the vaccine slots are available\"</string>
+    <string name="warning_district">Please select district.</string>
+    <string name="warning_select_dose">Please select Dose 1 or Dose 2.</string>
+    <string name="register">Register Now</string>
+    <string name="error">Something went wrong :(</string>
 </resources>

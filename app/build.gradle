@@ -14,8 +14,8 @@ android {
         applicationId "me.alphaone.vaccinenotifier"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 2
-        versionName '1.1'
+        versionCode 3
+        versionName '2.0'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

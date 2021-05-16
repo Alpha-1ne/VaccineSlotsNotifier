@@ -35,31 +35,6 @@ class MainActivity : AppCompatActivity() {
         //disableBatterySaveMode()
     }
 
-    private fun disableBatterySaveMode(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val pm = getSystemService(POWER_SERVICE) as PowerManager?
-            if (!pm!!.isIgnoringBatteryOptimizations(packageName)) {
-                if(Build.BRAND == "xiaomi") {
-                    try {
-                        val intent = Intent()
-                        intent.component = ComponentName(
-                            "com.miui.powerkeeper",
-                            "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"
-                        )
-                        intent.putExtra("package_name", packageName)
-                        intent.putExtra("package_label", "Vaccine Notifier")
-                        startActivity(intent)
-                    } catch (anfe: ActivityNotFoundException) {
-                    }
-                }
-                else {
-                    val intent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
-                    startActivity(intent)
-                }
-            }
-        }
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
