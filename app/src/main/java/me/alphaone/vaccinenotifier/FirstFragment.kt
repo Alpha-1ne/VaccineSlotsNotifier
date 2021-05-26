@@ -7,24 +7,20 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import me.alphaone.autostart.AutoStartPermissionHelper
 import me.alphaone.vaccinenotifier.databinding.FragmentFirstBinding
-import vaccinenotifier.data.scheduleWork
-import vaccinenotifier.data.stopWork
+import vaccinenotifier.data.NotifierService
 import vaccinenotifier.domain.Loading
 import vaccinenotifier.domain.Success
-import java.lang.Exception
 
 
 @AndroidEntryPoint
@@ -140,7 +136,12 @@ class FirstFragment : Fragment() {
                 showMessage(getString(R.string.warning_select_dose))
                 return@setOnClickListener
             }
-            scheduleWork(requireActivity().applicationContext)
+            Intent(requireContext(), NotifierService::class.java).run {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    requireActivity().startForegroundService(this)
+                }else
+                    requireActivity().startService(this)
+            }
             viewModel.saveScheduledState(true, dose1, dose2)
             showMessage(getString(R.string.action_scheduled))
             binding.progress.visibility = View.GONE
@@ -171,7 +172,7 @@ class FirstFragment : Fragment() {
 
     private fun stopWork() {
         binding.progress.visibility = View.VISIBLE
-        stopWork(requireContext())
+        requireActivity().stopService(Intent(requireContext(), NotifierService::class.java))
         viewModel.saveScheduledState(isScheduled = false, dose1 = false, false)
         binding.button.text = getString(R.string.action_notify)
         binding.progress.visibility = View.GONE
@@ -228,4 +229,5 @@ class FirstFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

@@ -42,6 +42,13 @@ class App: Application(), Configuration.Provider {
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
             )
+            notificationManager.createNotificationChannel(
+                NotificationChannel(
+                    "SERVICE_CHANNEL",
+                    "Service Notification",
+                    NotificationManager.IMPORTANCE_DEFAULT
+                )
+            )
         }
     }
 
