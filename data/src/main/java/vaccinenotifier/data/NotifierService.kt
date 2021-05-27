@@ -142,17 +142,20 @@ class NotifierService: Service(), CoroutineScope {
         super.onCreate()
         mJob = Job()
         handler.post(checkSlots)
+        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val launchIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val notification: Notification = NotificationCompat.Builder(
             this, "SERVICE_CHANNEL")
-            .setContentTitle("Vaccine Slots Notifier")
-            .setContentText("Running...")
+            .setContentTitle(getText(R.string.service_title))
+            .setContentText(getString(R.string.service_running))
             .setSmallIcon(R.drawable.ic_syringe)
+            .setContentIntent(launchIntent)
             .build()
         startForeground(ONGOING_NOTIFICATION_ID, notification)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
         return START_STICKY
     }
 
@@ -167,6 +170,7 @@ class NotifierService: Service(), CoroutineScope {
 
     companion object{
         private const val ONGOING_NOTIFICATION_ID = 181
+
     }
 
 }

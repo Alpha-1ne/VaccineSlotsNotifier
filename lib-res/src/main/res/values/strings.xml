@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="schedule_text">You will be notified for any 18+ vaccine slot (Dose 1 &amp; 2) availability in your district %s</string>
+    <string name="schedule_text">You will be notified whenever 18+ vaccine slot %s is available in your district %s</string>
     <string name="action_update">Update</string>
     <string name="action_notify">Notify once available</string>
     <string name="dose_one">1st Dose</string>
     <string name="dose_two">2nd Dose</string>
     <string name="action_stop">Stop</string>
     <string name="district">District</string>
+    <string name="pincode">Pincode</string>
     <string name="state">State</string>
-    <string name="title_instruction">To make sure you don\'t miss any notification, please check the below options:</string>
+    <string name="title_instruction">To make sure you do not miss any notification, please check the below options:</string>
     <string name="battery_optimization">Disable Battery Optimization</string>
     <string name="background_data">Enable Background Data</string>
     <string name="autostart">Enable Autostart</string>
-    <string name="action_setup">Check</string>
+    <string name="action_setup">Setup</string>
     <string name="action_scheduled">You will be notified whenever the vaccine slots are available\"</string>
     <string name="warning_district">Please select district.</string>
     <string name="warning_select_dose">Please select Dose 1 or Dose 2.</string>
     <string name="register">Register Now</string>
     <string name="error">Something went wrong :(</string>
+    <string name="service_title" >Vaccine Slots Notifier</string>
+    <string name="service_running">Running…</string>
+    <string name="splash_title">18+ Vaccine Slots Notifier</string>
 </resources>

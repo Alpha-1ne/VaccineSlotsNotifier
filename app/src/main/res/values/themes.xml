@@ -23,33 +23,4 @@
 
     <style name="Theme.VaccineSlotsNotifier.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="InputEditTextStyle" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
-        <item name="editTextStyle">@style/EditTextStyle</item>
-
-        <item name="colorControlActivated">?colorPrimary</item>
-        <item name="android:colorControlActivated">?colorPrimary</item>
-    </style>
-
-    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
-        <item name="android:paddingTop">28dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:textColor">@color/design_default_color_primary</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="InputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
-        <item name="materialThemeOverlay">@style/InputEditTextStyle</item>
-        <item name="hintTextAppearance">?textAppearanceBody2</item>
-        <item name="boxCornerRadiusTopEnd">8dp</item>
-        <item name="boxCornerRadiusTopStart">8dp</item>
-        <item name="boxCornerRadiusBottomStart">8dp</item>
-        <item name="boxCornerRadiusBottomEnd">8dp</item>
-        <item name="boxStrokeWidthFocused">0dp</item>
-        <item name="boxStrokeWidth">0dp</item>
-    </style>
-
-    <style name="Widget.App.Snackbar" parent="Widget.MaterialComponents.Snackbar">
-        <item name="android:layout_margin">0dp</item>
-    </style>
-
 </resources>

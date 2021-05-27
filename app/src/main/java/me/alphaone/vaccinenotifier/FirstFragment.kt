@@ -35,8 +35,8 @@ class FirstFragment : Fragment() {
 
     private var selectedState: Int = -1
     private var selectedDistrict: Int = -1
-    private var dose1: Boolean = false
-    private var dose2: Boolean = false
+    private var dose1: Boolean = true
+    private var dose2: Boolean = true
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -116,9 +116,15 @@ class FirstFragment : Fragment() {
                 if (it.isScheduled) {
                     binding.button.text = getString(R.string.action_update)
                     binding.cardViewScheduler.visibility = View.VISIBLE
-                    binding.scheduleText.text = getString(R.string.schedule_text, it.district.name)
-                    binding.switchDose1.isChecked = false
-                    binding.switchDose2.isChecked = false
+                    val doseText = StringBuilder("(")
+                    if(it.dose1)
+                        doseText.append("Dose 1")
+                    if(it.dose1 && it.dose2)
+                        doseText.append(" & ")
+                    if(it.dose2)
+                        doseText.append("Dose 2")
+                    doseText.append(")")
+                    binding.scheduleText.text = getString(R.string.schedule_text, doseText.toString(),it.district.name)
                     binding.stop.setOnClickListener {
                         stopWork()
                     }

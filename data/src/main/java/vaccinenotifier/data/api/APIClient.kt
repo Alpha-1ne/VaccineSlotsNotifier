@@ -1,6 +1,5 @@
 package vaccinenotifier.data.api
 import okhttp3.OkHttpClient
-import okhttp3.internal.userAgent
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit

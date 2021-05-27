@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="18+ Vaccine Slots Notifier"
+        android:text="@string/splash_title"
         android:textColor="@color/teal_700"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -22,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +33,6 @@
         app:lottie_rawRes="@raw/welcome" />
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
