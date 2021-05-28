@@ -14,7 +14,7 @@
     <string name="background_data">Enable Background Data</string>
     <string name="autostart">Enable Autostart</string>
     <string name="action_setup">Setup</string>
-    <string name="action_scheduled">You will be notified whenever the vaccine slots are available\"</string>
+    <string name="action_scheduled">You will be notified whenever the vaccine slots are available</string>
     <string name="warning_district">Please select district.</string>
     <string name="warning_select_dose">Please select Dose 1 or Dose 2.</string>
     <string name="register">Register Now</string>
